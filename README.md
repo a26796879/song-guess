@@ -1,5 +1,5 @@
 # song-guess
-Song guess game
+Song guess game  
   
 猜歌遊戲簡介  
 這是一個以中文歌為主的猜歌遊戲  
@@ -15,10 +15,10 @@ Song guess game
 設定期望的歌手，出題的方向就會是該歌手的熱門歌曲隨機選擇  
   
 2. by_playlist  
-設定出題的歌曲清單，出題的方向就會是該清單得歌曲隨機選擇  
+設定出題的歌曲清單，出題的方向就會是該清單的歌曲隨機選擇  
 
 
 
 技術實作：  
-歌曲及歌單來源皆使用 KKBOX api 進行串接
+歌曲及歌單來源皆使用 KKBOX api 進行串接  
 歌詞部分與 MusixMatch api 進行串接
