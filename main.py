@@ -51,7 +51,7 @@ class SongGuess:
         """ 根據 歌單ID取得 歌曲 """
         playlist_url = f"https://api.kkbox.com/v1.1/session-playlists/{playlist_id}?territory=TW&offset=0&limit=500"
         res = requests.get(url=playlist_url, headers=cls.get_token_headers())
-        return res.json()['tracks']['data']
+        return res.json()  # ['tracks']['data']
 
     @staticmethod
     def get_preview(song_id):
@@ -83,8 +83,9 @@ class SongGuess:
         track = MusixMatch.get_track(
             singer=singer, track_name=track_name)
 
-        print(quiz[nubmer]['name'], quiz[nubmer]['album']['artist']['name'],
-              SongGuess.get_preview(quiz[nubmer]['id']))
+        # print(quiz[nubmer]['name'], quiz[nubmer]['album']['artist']['name'],
+        preview_url = SongGuess.get_preview(quiz[nubmer]['id'])
+        print(preview_url)
 
         lyrics = MusixMatch.get_lyrics(track).replace(
             '******* This Lyrics is NOT for Commercial use *******', ''
@@ -98,10 +99,10 @@ class SongGuess:
             '男女: ', ''
         )
 
-        print(lyrics)
+        # print(lyrics)
         if lyrics != 'Something error':
             MusixMatch.speech_lyric(lyrics)
-            return True
+            return preview_url
         return False
 
 
@@ -109,5 +110,5 @@ if __name__ == '__main__':
     # while SongGuess.run(type='by_singer', data='周杰倫') is not True:
     #     SongGuess.run(type='by_singer', data='周杰倫')
 
-    # print(SongGuess.get_playlist('0k9WzH_kzou3ANMYUl')[0])
-    SongGuess.run(type='by_playlist', data='0k9WzH_kzou3ANMYUl')
+    #SongGuess.run(type='by_singer', data='李聖傑')
+    SongGuess.run(type='by_playlist', data='OqvcU7OhhreaHHFltp')
