@@ -1,10 +1,8 @@
 """ 猜歌遊戲主程式 """
-from pickletools import read_uint1
-from tkinter.tix import Tree
-import requests
-from bs4 import BeautifulSoup
 import random
 import os
+import requests
+from bs4 import BeautifulSoup
 import settings
 from lyrics import MusixMatch
 
