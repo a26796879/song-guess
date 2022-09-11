@@ -46,6 +46,7 @@ function get_quiz_list() {
     playlist_id = document.querySelector("#playlist_id").value;
     playlist = ajax_url("get_quiz/" + playlist_id)['tracks']['data']
     console.log(playlist)
+    document.getElementById('set_quiz').style.visibility = 'visible';
 }
 function set_quiz() {
     hide_answer()
