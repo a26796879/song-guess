@@ -22,6 +22,12 @@ def get_preview(song_id):
     return {"preview_url": SongGuess.get_preview(song_id)}
 
 
+@app.route('/search_playlist/<keyword>')
+def search_playlist(keyword):
+    """ 取得 KKBOX 歌單查詢結果 """
+    return SongGuess.search_playlist(keyword)
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=5000)

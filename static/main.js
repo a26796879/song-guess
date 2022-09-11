@@ -1,14 +1,15 @@
 let playlist;
 let quizlist = [];
+let search_result = [];
 const msg = new SpeechSynthesisUtterance(); //come from WEB Speech API
 let voices = [];
 // const voicesDropdown = document.querySelector('[name="voice"]');
 // const options = document.querySelectorAll('[type="range"], [name="text"]');
 // const speakButton = document.querySelector('#speak');
 // const stopButton = document.querySelector('#stop');
-const get_playlistButton = document.querySelector('#get_playlist');
 const setQuizButton = document.querySelector('#set_quiz');
 const answerButton = document.querySelector('#answer');
+const search_playlistButton = document.querySelector('#search_playlist');
 // msg.text = document.querySelector('[name="text"]').value;
 
 // function populateVoices() {
@@ -42,10 +43,9 @@ const answerButton = document.querySelector('#answer');
 //     toggle();
 // }
 
-function get_quiz_list() {
-    playlist_id = document.querySelector("#playlist_id").value;
+function get_quiz_list(playlist_id) {
+    document.getElementById('set_quiz').style.visibility = 'hidden';
     playlist = ajax_url("get_quiz/" + playlist_id)['tracks']['data']
-    console.log(playlist)
     document.getElementById('set_quiz').style.visibility = 'visible';
 }
 function set_quiz() {
@@ -90,6 +90,23 @@ function hide_answer() {
     document.getElementById("album").style.visibility = "hidden";
     document.getElementById("release_date_text").style.visibility = "hidden";
 }
+
+function search_playlist() {
+    playlist_result = document.getElementById("playlist_result");
+    playlist_result.innerText = null;	//清空下拉選單
+    keyword = document.querySelector("#playlist_search").value;
+    search_result = ajax_url("search_playlist/" + keyword)['data']['result']
+    for (var i = 0; i < search_result.length; i++) {    //把結果塞入playlist_result的下拉選單中
+        var opt = search_result[i]['title'];
+        var el = document.createElement("option");
+        el.textContent = opt;
+        el.value = opt;
+        playlist_result.appendChild(el);
+    }
+    get_quiz_list(search_result[0]['id'])
+    document.getElementById('playlist_comefrom').style.visibility = 'visible';
+    document.getElementById('playlist_comefrom').href = search_result[0]['url']
+}
 function ajax_url(url) {	//get data using jquery.ajax
     var result;
     $.ajax({
@@ -109,4 +126,12 @@ function ajax_url(url) {	//get data using jquery.ajax
 // stopButton.addEventListener('click', () => toggle(false));
 setQuizButton.addEventListener('click', set_quiz);
 answerButton.addEventListener('click', show_answer);
-get_playlistButton.addEventListener('click', get_quiz_list);
+search_playlistButton.addEventListener('click', search_playlist);
+playlist_result = document.getElementById("playlist_result");
+playlist_result.addEventListener("change", function () {	//playlist_result的下拉選單有變化時
+    document.getElementById('set_quiz').style.visibility = 'hidden';
+    seleted = playlist_result.selectedIndex
+    get_quiz_list(search_result[seleted]['id'])
+    document.getElementById('playlist_comefrom').style.visibility = 'visible';
+    document.getElementById('playlist_comefrom').href = search_result[seleted]['url']
+});

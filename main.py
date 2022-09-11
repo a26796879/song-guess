@@ -60,6 +60,13 @@ class SongGuess:
         return soup.find_all('meta')[10].get('content')
 
     @staticmethod
+    def search_playlist(keyword):
+        """ 取得 KKBOX 歌單查詢結果 """
+        list_url = f'https://www.kkbox.com/api/search/playlist?q={keyword}&p=1&terr=tw&lang=tc'
+        res = requests.get(list_url)
+        return res.json()
+
+    @staticmethod
     def run(type, data):
         """ 執行遊戲
             type:

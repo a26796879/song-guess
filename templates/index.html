@@ -6,14 +6,20 @@
 
 <body>
     <div id="DDL">
-        <label for="name">請輸入 KKBOX 歌單ID:</label>
+        <label for="name">請輸入 猜歌題目 關鍵字:</label>
+        <h6>( 歌手、歌名、專輯、年份等 )
+    </div>
+
+    <div>
+        <input type="text" id="playlist_search" name="playlist_search" required minlength="18" maxlength="18" size="20">
+        <button id="search_playlist">搜尋</button>
     </div>
     <div>
-        <input type="text" id="playlist_id" name="playlist_id" required minlength="18" maxlength="18" size="20"
-            value="OqvcU7OhhreaHHFltp">
-        <button id="get_playlist">取得題目</button>
+        <select id="playlist_result"></select>
+        <button id="set_quiz">出題！</button>
+        <h5><a href="" id="playlist_comefrom" target="_blank">( 出題來源 )</a>
     </div>
-    <button id="set_quiz">出題！</button>
+
     <div>
         <video id="video" controls="" autoplay="" name="media">
             <source src="" type="audio/mpeg">
@@ -58,6 +64,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
         document.getElementById('set_quiz').style.visibility = 'hidden';
+        document.getElementById('playlist_comefrom').style.visibility = 'hidden';
     </script>
 </body>
 
