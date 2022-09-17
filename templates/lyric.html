@@ -1,0 +1,67 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <div id="DDL">
+        <label for="name">請輸入 猜歌題目 關鍵字:</label>
+        <h6>( 歌手、歌名、專輯、年份等 )
+    </div>
+
+    <div>
+        <input type="text" id="playlist_search" name="playlist_search" required minlength="18" maxlength="18" size="20">
+        <button id="search_playlist">搜尋</button>
+    </div>
+    <div>
+        <select id="playlist_result"></select>
+        <button id="speak">出題！</button>
+        <button id="stop">Stop!</button>
+        <h5><a href="" id="playlist_comefrom" target="_blank">( 出題來源 )</a>
+    </div>
+
+    <button id="answer">解答！</button>
+    <div>
+        <label id="song_name">
+            <h2 id="song_name_text"></h2>
+        </label>
+        <label id="singer">
+            <h2 id="singer_text"></h2>
+        </label>
+        <label id="album_name">
+            <h2 id="album_name_text"></h2>
+        </label>
+        <label id="release_date">
+            <h2 id="release_date_text"></h2>
+        </label>
+        <img id="album" src="" with="100" heigh="100">
+    </div>
+
+
+    <div class="voiceinator" id="voiceinator">
+
+        <select name="voice" id="voices">
+            <option value="">Select A Voice</option>
+        </select>
+
+        <label for="rate">Rate:</label>
+        <input name="rate" type="range" min="0" max="3" value="1" step="0.1">
+
+        <label for="pitch">Pitch:</label>
+
+        <input name="pitch" type="range" min="0" max="2" step="0.1">
+        <textarea name="text" id="lyrics"></textarea>
+
+    </div>
+    <script src="../static/lyric.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        document.getElementById('voiceinator').style.visibility = 'hidden';
+        document.getElementById('stop').style.visibility = 'hidden';
+        document.getElementById('speak').style.visibility = 'hidden';
+        document.getElementById('playlist_comefrom').style.visibility = 'hidden';
+    </script>
+</body>
+
+</html>

@@ -34,4 +34,18 @@ class MusixMatch:
         )['message']['header']['status_code']
         if lyric_res_status_code != 200:
             return 'Something error'
-        return lyric_res.json()['message']['body']['lyrics']['lyrics_body']
+        lyrics = lyric_res.json()['message']['body']['lyrics']['lyrics_body'].replace(
+            '******* This Lyrics is NOT for Commercial use *******', ''
+        ).replace(
+            '(1409622762958)', ''
+        ).replace(
+            '男: ', ''
+        ).replace(
+            '女: ', ''
+        ).replace(
+            '男女: ', ''
+        ).replace(
+            '...', ''
+        )
+
+        return lyrics
