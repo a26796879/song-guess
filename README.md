@@ -14,7 +14,9 @@ Guess the song!
 
 技術實作：  
 歌曲及題目來源皆使用 KKBOX api 進行串接  
-歌詞部分與 MusixMatch api 進行串接
+歌詞部分與 MusixMatch api 進行串接  
+後端框架使用flask，前端是raw js  
+專案部署於fly.io  
 
-如想clone回本機執行，則須申請KKBOX & MusixMatch 相關授權並記錄於.env  
+*如想clone回本機執行，則須申請KKBOX & MusixMatch 相關授權並記錄於.env  
 
